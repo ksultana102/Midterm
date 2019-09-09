@@ -38,7 +38,7 @@ public class ConnectToSqlDB {
         String password = prop.getProperty("MYSQLJDBC.password");
         Class.forName(driverClass);
         connect = DriverManager.getConnection(url,userName,password);
-        System.out.println("Database is connected");
+//        System.out.println("Database is connected");
         return connect;
     }
 
@@ -81,6 +81,29 @@ public class ConnectToSqlDB {
             dataList.add(itemName);
         }
         return dataList;
+    }
+    // This is for flower and fruit
+    public void insertDataFromArrayToSqlTable(List<String> ArrayData, String tableName)
+    {
+        try {
+            connectToSqlDatabase();
+            ps = connect.prepareStatement("DROP TABLE IF EXISTS `"+tableName+"`;");
+            ps.executeUpdate();
+            ps = connect.prepareStatement("CREATE TABLE `"+tableName+"` (`ID` int(11) NOT NULL AUTO_INCREMENT,`name` VARCHAR(20) DEFAULT NULL,  PRIMARY KEY (`ID`) );");
+            ps.executeUpdate();
+            for(int n=0; n<ArrayData.size(); n++){
+                ps = connect.prepareStatement("INSERT INTO "+tableName+" ( ID, name ) VALUES( "+ (n + 1) + ",?)");
+                ps.setString(1,ArrayData.get(n));
+                ps.executeUpdate();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void insertDataFromArrayToSqlTable(int [] ArrayData, String tableName, String columnName)
@@ -181,6 +204,31 @@ public class ConnectToSqlDB {
         }
     }
 
+    public static List<String> readUserProfileFromSqlTable(String tablename)throws IOException, SQLException, ClassNotFoundException{
+        List<String> list = new ArrayList<>();
+        User user = null;
+        try{
+            Connection conn = connectToSqlDatabase();
+            String query = "SELECT * FROM " + tablename;
+            // create the java statement
+            Statement st = conn.createStatement();
+            // execute the query, and get a java resultset
+            ResultSet rs = st.executeQuery(query);
+            // iterate through the java resultset
+            while (rs.next())
+            {
+                String name = rs.getString("name");
+                list.add(name);
+
+            }
+            st.close();
+        }catch (Exception e){
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
+        return list;
+    }
+
     public static List<User> readUserProfileFromSqlTable()throws IOException, SQLException, ClassNotFoundException{
         List<User> list = new ArrayList<>();
         User user = null;
@@ -211,9 +259,10 @@ public class ConnectToSqlDB {
     }
 
     public static void main(String[] args)throws IOException, SQLException, ClassNotFoundException {
-        List<User> list = readUserProfileFromSqlTable();
+        ConnectToSqlDB.connectToSqlDatabase();
+       /* List<User> list = readUserProfileFromSqlTable();
         for(User user:list){
-            System.out.println(user.getStName() + " " + user.getStID()+ " " + user.getStDOB());
+            System.out.println(user.getStName() + " " + user.getStID()+ " " + user.getStDOB());*/
         }
     }
-}
+

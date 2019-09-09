@@ -47,7 +47,7 @@ public class XmlReader {
 						student.lastName = content;
 						break;
 					case "score":
-						student.score = convertIntToChar(content);  
+						student.score = convertIntToChar(content);
 						break;	
 					}
 				}
@@ -62,7 +62,29 @@ public class XmlReader {
 	//This convert method need to be implemented.
 	public String convertIntToChar(String score){
 		String grade = "";
-		
+		if(Integer.parseInt(score)>= 90){
+
+			grade = "A";
+
+		}else if (Integer.parseInt(score)<=89 && Integer.parseInt(score)>=80){
+
+			grade = "B";
+
+
+
+		}else if(Integer.parseInt(score)<=79 && Integer.parseInt(score)>=70){
+
+			grade = "c";
+
+		}else if(Integer.parseInt(score)>=60){
+
+			grade = "D";
+
+		}else {
+
+			grade ="F";
+
+		}
 		
 		return grade;	
 	}

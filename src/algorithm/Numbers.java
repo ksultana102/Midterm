@@ -1,3 +1,4 @@
+/*
 package algorithm;
 
 import databases.ConnectToSqlDB;
@@ -5,12 +6,15 @@ import databases.ConnectToSqlDB;
 import java.util.List;
 import java.util.Random;
 
+*/
 /*
  *Created by mrahman on 04/02/2018.
- */
+ *//*
+
 public class Numbers {
 
-	/*
+	*/
+/*
 	 * Show all the different kind of sorting algorithm by applying into (num array).
 	 * Display the execution time for each sorting.Example in below.
 	 *
@@ -18,11 +22,12 @@ public class Numbers {
 	 *
 	 * At the end. After running all the sorting algo, come to a conclusion which one is suitable on given data set.
 	 *
-	 */
+	 *//*
+
 
 	public static void main(String[] args) throws Exception {
 		
-		int [] num = new int[1000000];
+		int [] num = new int[100];
 		storeRandomNumbers(num);
 		ConnectToSqlDB connectToSqlDB = new ConnectToSqlDB();
 		//Selection Sort
@@ -30,9 +35,9 @@ public class Numbers {
 		algo.selectionSort(num);
 		long selectionSortExecutionTime = algo.executionTime;
 		System.out.println("Total Execution Time of "+ num.length + " numbers in Selection Sort take: " + selectionSortExecutionTime + " milli sec");
-        connectToSqlDB.insertDataFromArrayToSqlTable(num, "selection_sort", "SortingNumbers");
-        List<String> numbers = connectToSqlDB.readDataBase("selection_sort", "SortingNumbers");
-        printValue(numbers);
+        //connectToSqlDB.insertDataFromArrayToSqlTable(num, "selection_sort", "SortingNumbers");
+        //List<String> numbers = connectToSqlDB.readDataBase("selection_sort", "SortingNumbers");
+        //printValue(numbers);
 		int n = num.length;
 		randomize (num, n);
 		//Insertion Sort
@@ -79,3 +84,4 @@ public class Numbers {
 		}
 	}
 }
+*/

@@ -21,7 +21,15 @@ public class EmployeeInfo {
 	 * declare few static and final fields and some non-static fields
 	 */
 	static String companyName;
-	
+	private int employeeId;
+	private String employeeName;
+	private String department;
+	private static int salary;
+	public DateConversion dateConversion;
+	private int benefit;
+	public static final String IT_DEPT = "Software Development";
+
+
 	/*
 	 * You must implement the logic for below 2 methods and 
 	 * following 2 methods are prototype as well for other methods need to be design,

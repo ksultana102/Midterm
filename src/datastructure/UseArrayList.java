@@ -15,6 +15,7 @@ public class UseArrayList {
 		Iterator it = list.iterator();
 		while (it.hasNext()) {
 			System.out.println(it.next());
+
 			/*
 			 * Demonstrate how to use ArrayList that includes add,peek,remove,retrieve elements.
 			 * Use For Each loop and while loop with Iterator to retrieve data.
