@@ -41,10 +41,12 @@ public class EmployeeInfo {
 	 * Must implement below constructor.
 	 */
 	public EmployeeInfo(int employeeId){
-		
+		this.employeeId = employeeId;
 	}
     public EmployeeInfo(String name, int employeeId){
-		
+		this.employeeId = employeeId;
+		this.employeeName = name;
+
 	}
 	
 	/*
@@ -56,8 +58,7 @@ public class EmployeeInfo {
 	 * 
 	 */
 	public static int calculateEmployeeBonus(int numberOfYearsWithCompany){
-		int total=0;
-		return total;
+		return (salary * 10) / 100 + (salary * 8) / 100;
 	}
 	
 	/*
@@ -68,6 +69,7 @@ public class EmployeeInfo {
 	 */
 	public static int calculateEmployeePension(){
 		int total=0;
+		try{
 		Scanner sc  = new Scanner(System.in);
 		System.out.println("Please enter start date in format (example: May,2015): ");
 		String joiningDate = sc.nextLine();
@@ -78,15 +80,20 @@ public class EmployeeInfo {
 
         //implement numbers of year from above two dates
 		//Calculate pension
+			int percentage = 5 * DateConversion.yearDiff(convertedJoiningDate, convertedTodaysDate);
 
-
-
+			total = (salary * percentage) / 100;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return total;
 	}
 	private static class DateConversion {
 
-		public DateConversion(Months months){}
-		public static String convertDate(String date) {
+		public DateConversion(Months months) {
+		}
+
+		public static String convertDate(String date) throws Exception {
 			String [] extractMonth = date.split(",");
 			String givenMonth = extractMonth[0];
 			int monthDate = whichMonth(givenMonth);
@@ -141,5 +148,46 @@ public class EmployeeInfo {
 			return date;
 
 		}
+
+		public static int yearDiff(String startDate, String endDate){
+			String[] joiningDateAttributes = startDate.split("/");
+			String[] todaysDateAttributes = endDate.split("/");
+
+			int years = Integer.parseInt(todaysDateAttributes[1]) - Integer.parseInt(joiningDateAttributes[1]);
+
+			if (Integer.parseInt(todaysDateAttributes[0]) < Integer.parseInt(joiningDateAttributes[0])) {
+				years--;
+			}
+
+			return years == 0? 1: years;
+		}
+	}
+
+	public int employeeId() {
+		return employeeId;
+	}
+
+
+	public String employeeName() {
+		return employeeName;
+	}
+
+
+	public void assignDepartment() {
+		this.department = IT_DEPT;
+	}
+
+
+	public int calculateSalary() {
+		return salary;
+	}
+
+
+	public void benefitLayout() {
+		this.benefit = 100;
+	}
+
+	public void setSalary(int inputSalary) {
+		salary = inputSalary;
 	}
 }

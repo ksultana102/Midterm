@@ -18,6 +18,8 @@ public class CsvReader {
         String line = "";
         String cvsSplitBy = ",";
         BufferedReader br = null;
+        int sum = 0;
+        double Average = 0.0;
         List<Trainee> roster = new ArrayList<Trainee>();
 
         try {
@@ -32,7 +34,12 @@ public class CsvReader {
                 roster.add(new Trainee(name[5].replace("\"", ""), name[4].replace("\"",
                         ""), Integer.parseInt(name[10])));
 
+                sum += Integer.parseInt(name[8]);
+                lineNumber++;
+
             }
+
+            Average = (double)sum/ (double)lineNumber;
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,6 +69,8 @@ public class CsvReader {
                 System.out.println(student.getFirstName() + " " + student.getLastName() + " " + student.getNumberOfExercisesSolved());
             }
         }
+
+        System.out.println("Average is " + Average);
 
     }
 

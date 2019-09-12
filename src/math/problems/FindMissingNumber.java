@@ -26,7 +26,7 @@ public class FindMissingNumber {
 
             }
 
-            System.out.println("Missing numbers:");
+            System.out.println("Missing numbers in array:");
             for (int y = 0; y < z; y++) {
                 System.out.println(missingNumber[y]);
             }

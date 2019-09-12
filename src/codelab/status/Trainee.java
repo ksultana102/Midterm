@@ -15,10 +15,12 @@ public class Trainee implements Comparable<Trainee> {
     }
 
     public String getFirstName() {
+
         return firstName;
     }
 
     public void setFirstName(String firstName) {
+
         this.firstName = firstName;
     }
 

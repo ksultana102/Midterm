@@ -14,9 +14,14 @@ public class FortuneEmployee {
 	 *
 	 **/
 	public static void main(String[] args) {
-		
 
+		EmployeeInfo employeeInfo = new EmployeeInfo("Samia", 12);
 
+		employeeInfo.setSalary(5000);
+
+		System.out.println(EmployeeInfo.calculateEmployeePension());
+		System.out.println(EmployeeInfo.calculateEmployeeBonus(5));
 	}
 
 }
+
